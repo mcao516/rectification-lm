@@ -1,1 +1,2 @@
-# rectification-lm
+# Systematic Rectification of Language Models via Dead-end Analysis
+This repository contains code necessary to replicate the training and evaluation for our ICLR 2023 paper "Systematic Rectification of Language Models via Dead-end Analysis" by [Meng Cao](https://mcao516.github.io/), [Mehdi Fatemi](https://scholar.google.com/citations?user=X9_mSpYAAAAJ&hl=en), [Jackie CK Cheung](https://www.cs.mcgill.ca/~jcheung/) and [Samira Shabanian](https://scholar.google.ca/citations?user=CHkNfSMAAAAJ&hl=en).
