@@ -3,7 +3,7 @@
 from googleapiclient import discovery
 
 
-API_KEY = 'AIzaSyBCk7L5Otk2MpaftKe8wo2t68Dpe0Jh4ws'
+API_KEY = ""  # put your key here
 client = discovery.build(
     "commentanalyzer",
     "v1alpha1",
