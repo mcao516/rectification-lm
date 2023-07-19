@@ -1,2 +1,14 @@
 # Systematic Rectification of Language Models via Dead-end Analysis
 This repository contains code necessary to replicate the training and evaluation for our ICLR 2023 paper "[Systematic Rectification of Language Models via Dead-end Analysis](https://openreview.net/forum?id=k8_yVW3Wqln&referrer=%5Bthe%20profile%20of%20Meng%20Cao%5D(%2Fprofile%3Fid%3D~Meng_Cao3))" by [Meng Cao](https://mcao516.github.io/), [Mehdi Fatemi](https://scholar.google.com/citations?user=X9_mSpYAAAAJ&hl=en), [Jackie CK Cheung](https://www.cs.mcgill.ca/~jcheung/) and [Samira Shabanian](https://scholar.google.ca/citations?user=CHkNfSMAAAAJ&hl=en).
+
+# Requirements and Installation
+* Python version >= 3.8
+* [PyTorch](http://pytorch.org/) version >= 1.7.1
+* [transformers](https://huggingface.co/docs/transformers/index) >= 4.22.0
+* [accelerate](https://huggingface.co/docs/accelerate/index) >= 0.12.0
+
+# Running the Code
+
+## Training
+
+## Inference
