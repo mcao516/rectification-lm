@@ -53,3 +53,18 @@ python decoding.py \
     --threshold 0.4 \
     --top_k 30;
 ```
+
+# Citation
+
+Please cite as:
+
+``` bibtex
+@inproceedings{
+cao2023systematic,
+title={Systematic Rectification of Language Models via Dead-end Analysis},
+author={Meng Cao and Mehdi Fatemi and Jackie CK Cheung and Samira Shabanian},
+booktitle={The Eleventh International Conference on Learning Representations },
+year={2023},
+url={https://openreview.net/forum?id=k8_yVW3Wqln}
+}
+```
