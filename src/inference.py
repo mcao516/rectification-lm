@@ -131,11 +131,11 @@ def main(args):
     # load language model
     tokenizer = AutoTokenizer.from_pretrained(args.lm_name_or_path, padding_side="left")
     tokenizer.pad_token = tokenizer.eos_token
-    
+
     model = AutoModelForCausalLM.from_pretrained(
         args.lm_name_or_path,
-        # torch_dtype=torch.float16,
-        device_map="auto",
+        torch_dtype=torch.float16,
+        # device_map="auto",
     )
     model.resize_token_embeddings(len(tokenizer), pad_to_multiple_of=None)
     model.config.pad_token_id = model.config.eos_token_id
@@ -145,7 +145,7 @@ def main(args):
     # load value function Q
     control_model = CausalLMWithValueHeadsInference.from_pretrained(args.q_model_path)
     control_model.to(device)
-    # control_model.half()
+    control_model.half()
     control_model.eval()
 
     # load evaluation dataset
