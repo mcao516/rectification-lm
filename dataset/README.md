@@ -27,7 +27,7 @@ Next, generate the training data for the reward model using the following comman
 SAVE_DIR=rm_dataset/processed/
 mkdir $SAVE_DIR
 
-python build_reward_training_data.py -f rm_dataset/train.csv -s $SAVE_DIR --drop_rate 0.3;
+python build_reward_training_data.py -f rm_dataset/train.csv -s $SAVE_DIR --drop_rate 0.3
 ```
 
 After preparing the dataset, proceed to train the reward model. Make sure to replace `YOUR_REWARD_MODEL_SAVE_DIR` with your actual save directory path where the trained model will be stored:
@@ -43,7 +43,7 @@ python train_reward_model.py \
   --per_device_train_batch_size 32 \
   --learning_rate 2e-5 \
   --num_train_epochs 1 \
-  --output_dir $OUTPUT_DIR;
+  --output_dir $OUTPUT_DIR
 ```
 
 ## Value Function $Q_D$ Data Preparation
@@ -69,7 +69,7 @@ Execute the `build_value_training_prompts.py` to generate prompts:
 RAW_JIGSAW_FILE=qd_dataset/train.csv
 SAVE_PATH=qd_dataset/processed/prompts.jsonl
 
-python build_value_training_prompts.py -f $RAW_JIGSAW_FILE -s $SAVE_PATH --drop_rate 0.9;
+python build_value_training_prompts.py -f $RAW_JIGSAW_FILE -s $SAVE_PATH --drop_rate 0.9
 ```
 
 ### Step 3: Generate Responses
@@ -87,7 +87,7 @@ python generate_continuations.py \
     --save_file $SAVE_FILE \
     --num_returns 25 \
     --batch_size 8 \
-    --sample_size -1;
+    --sample_size -1
 ```
 
 Then, score the generated responses using the trained reward model with the following commands:
@@ -100,7 +100,7 @@ python BERT_reward.py \
     --model_name_or_path $REWARD_MODEL_PATH \
     --data_file $GENS_FILE \
     --toxicity_type "BERT_RM" \
-    --batch_size 512;
+    --batch_size 512
 ```
 
 ### Step 4: Compile Training Data
@@ -114,7 +114,7 @@ SAVE_DIR=qd_dataset/processed/
 python build_value_training_data.py \
   -f $FILE_PATH -s $SAVE_DIR \
   --toxicity_type "BERT_RM" \
-  --mode "most";
+  --mode "most"
 ```
 
 After running this script, a `train.jsonl` and `val.jsonl` file will be saved under `SAVE_DIR`. Now, you can run the training script in `src` using the created dataset.

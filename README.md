@@ -39,7 +39,7 @@ accelerate launch --config_file accelerator_config.yaml src/train.py \
     --validation_file $VALID_FILE \
     --model_name_or_path gpt2 \
     --output_dir $OUTPUT_DIR \
-    --checkpointing_steps "epoch";
+    --checkpointing_steps "epoch"
 
 ```
 
@@ -72,7 +72,7 @@ python evaluation/run_perspective_api.py $SAVE_PATH \
     --save_scores --score_saving_path "eval_scores.jsonl";
 
 echo "Diversity evaluation..."
-python evaluation/diversity_eval.py -f $SAVE_PATH --num_return 25;
+python evaluation/diversity_eval.py -f $SAVE_PATH --num_return 25
 ```
 
 ## Citation
