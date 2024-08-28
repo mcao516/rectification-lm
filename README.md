@@ -70,6 +70,9 @@ python evaluation/run_perspective_api.py $SAVE_PATH \
     --num_thread 8 \
     --perspective_api_key $PERSPECTIVE_API_KEY \
     --save_scores --score_saving_path "eval_scores.jsonl";
+
+echo "Diversity evaluation..."
+python evaluation/diversity_eval.py -f $SAVE_PATH --num_return 25;
 ```
 
 ## Citation
