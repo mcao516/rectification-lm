@@ -63,24 +63,18 @@ class SecurityLogitsProcessor(LogitsProcessor):
         """
         attn_mask = (input_ids != self.pad_token).long()
         security_scores = self.rectlm(input_ids, attention_mask=attn_mask).logits[:, -1, :]
-        lm_probs = nn.functional.softmax(scores, dim=-1)
 
-        security_scores = torch.clamp(security_scores, max=0.0, min=-1.0)
+        # security_scores = torch.clamp(security_scores, max=0.0, min=-1.0)
         secure_probs = 1 + security_scores - self.eps
         secure_probs = torch.clamp(secure_probs, max=self.p_max, min=self.p_min)
 
-        for _ in range(3):
-            mask = lm_probs > secure_probs
-            lm_probs[mask] = secure_probs[mask]
+        for _ in range(2):
+            threshold = torch.log(secure_probs) + torch.logsumexp(scores, dim=1).unsqueeze(-1)
 
-            # re-normalize
-            lm_probs = lm_probs / lm_probs.sum(dim=1, keepdim=True)
+            mask = scores > threshold
+            scores[mask] = threshold[mask]
 
-        # Perform the log-sum-exp operation
-        lse = torch.logsumexp(lm_probs, dim=1).unsqueeze(-1)
-        logits = torch.log(lm_probs) + lse
-
-        return logits
+        return scores
 
 
 def model_sample(
